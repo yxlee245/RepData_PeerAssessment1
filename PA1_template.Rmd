@@ -5,10 +5,16 @@ output:
     keep_md: true
 ---
 
-
 ## Loading and preprocessing the data
+Load data
+```{r}
+data_df <- read.csv(unz("activity.zip", "activity.csv"), header = TRUE)
+```
 
-
+Convert date values from factor to date object in R
+```{r}
+data_df <- transform(data_df, date = as.Date(date))
+```
 
 ## What is mean total number of steps taken per day?
 
