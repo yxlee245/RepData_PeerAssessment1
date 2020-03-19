@@ -8,7 +8,8 @@ output:
 ## Loading and preprocessing the data
 Load data
 ```{r}
-data_df <- read.csv(unz("activity.zip", "activity.csv"), header = TRUE)
+data_df <- read.csv(unz("activity.zip", "activity.csv"), header = TRUE,
+                    na.strings = "NA")
 ```
 
 Convert date values from factor to date object in R
@@ -17,8 +18,27 @@ data_df <- transform(data_df, date = as.Date(date))
 ```
 
 ## What is mean total number of steps taken per day?
+Compute total number of steps taken per day (ignoring NAs)
+```{r}
+total_steps_per_day = tapply(data_df$steps, data_df$date, sum, na.rm = TRUE)
+```
 
+Histogram of total number of steps per day
+```{r}
+hist(total_steps_per_day, breaks = 10, xlab = "Total Number of Steps Per Day",
+     ylab = "Number of Days",
+     main = "Histogram of Total Number of Steps Per Day")
+```
 
+Mean of total number of steps taken per day
+```{r}
+mean(total_steps_per_day, na.rm = TRUE)
+```
+
+Median of total number of steps taken per day
+```{r}
+median(total_steps_per_day, na.rm = TRUE)
+```
 
 ## What is the average daily activity pattern?
 
