@@ -41,6 +41,23 @@ median(total_steps_per_day, na.rm = TRUE)
 ```
 
 ## What is the average daily activity pattern?
+Compute average number of steps for every time interval
+```{r}
+ave_steps_per_interval = tapply(data_df$steps, data_df$interval,
+                                mean, na.rm = TRUE)
+```
+
+Time series plot of 5-minute interval and average number of steps taken across all day
+```{r}
+plot(names(ave_steps_per_interval), ave_steps_per_interval, type = "l",
+     xlab = "Interval (min)", ylab = "Average Number of Steps",
+     main = "Plot of Average Number of Steps across all Days per Time Interval")
+```
+
+Get interval which contains the highest number of steps on average across all days
+```{r}
+names(which.max(ave_steps_per_interval))
+```
 
 
 
