@@ -24,7 +24,7 @@ total_steps_per_day <- tapply(data_df$steps, data_df$date, sum, na.rm = TRUE)
 ```
 
 Histogram of total number of steps per day
-```{r}
+```{r histogram_1}
 hist(
   total_steps_per_day,
   breaks = 10,
@@ -52,7 +52,7 @@ ave_steps_per_interval <- tapply(data_df$steps, data_df$interval,
 ```
 
 Time series plot of 5-minute interval and average number of steps taken across all day
-```{r}
+```{r timeseries_1}
 plot(names(ave_steps_per_interval), ave_steps_per_interval, type = "l",
      xlab = "Interval (min)", ylab = "Average Number of Steps",
      main = "Plot of Average Number of Steps across all Days per Time Interval")
@@ -83,7 +83,7 @@ for (i in 1:nrow(data_imputed)) {
 ```
 
 Histogram of total number of steps per day, using imputed data
-```{r}
+```{r histogram_2}
 total_steps_per_day <- tapply(
   data_imputed$steps, data_imputed$date, sum, na.rm = TRUE
 )
@@ -126,7 +126,7 @@ data_imputed$day_type <- as.factor(day_type)
 ```
 
 Panel plot of time series of 5-min interval and average number of steps taken, across weekday days and weekend days
-```{r}
+```{r timeseries_2}
 library(ggplot2)
 ggplot(data = data_imputed) +
   stat_summary(aes(x = interval, y = steps), fun.y = mean, geom = "line") +
